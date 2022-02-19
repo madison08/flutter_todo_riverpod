@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/state_management.dart';
-
 import '../providers/state.dart';
 
 import './Tasks_title.dart';
@@ -33,13 +31,16 @@ class TaskList extends ConsumerWidget {
             ));
           },
           child: TaskTitle(
-            '${taskNotifier.getAllTask[index].name}', //dataProvider.getAllTasks[index].name, //Provider.of<DataProvider>(context).tasks[index].name, //tasks[index].name,
-            //isChecked: tasks[index]
-            //.isDone, //dataProvider.getAllTasks[index].isDone, //Provider.of<DataProvider>(context).tasks[index].isDone,
-            // checkBoxCallback: (checkBoxState) {
-            //   dataProvider.checkTask(dataProvider.getAllTasks[index]);
-            // }
-          ),
+              titleList:
+                  '${taskNotifier.getAllTask[index].name}', //dataProvider.getAllTasks[index].name, //Provider.of<DataProvider>(context).tasks[index].name, //tasks[index].name,
+              isChecked: taskNotifier.getAllTask[index]
+                  .isDone, //tasks[index].isDone, //dataProvider.getAllTasks[index].isDone, //Provider.of<DataProvider>(context).tasks[index].isDone,
+              checkBoxCallback: (checkBoxState) {
+                // dataProvider.checkTask(dataProvider.getAllTasks[index]);
+                ref
+                    .read(taskProvider)
+                    .checkTask(taskNotifier.getAllTask[index]);
+              }),
         );
       },
     );
@@ -47,13 +48,3 @@ class TaskList extends ConsumerWidget {
     // );
   }
 }
-
-// Widget build(BuildContext context) {
-//     return ListView(
-//       children: [
-//         TaskTitle(),
-//         TaskTitle(),
-//         TaskTitle(),
-//       ],
-//     );
-//   }

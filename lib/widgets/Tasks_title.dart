@@ -7,12 +7,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/state_management.dart';
 
 class TaskTitle extends StatelessWidget {
-  // Function checkBoxCallback;
+  final Function checkBoxCallback;
 
   final String titleList;
-  // bool isChecked;
+  bool isChecked;
 
-  TaskTitle(this.titleList); //this.isChecked = false //this.checkBoxCallback
+  TaskTitle(
+      {required this.titleList,
+      required this.isChecked,
+      required this.checkBoxCallback}); //this.isChecked = false //this.checkBoxCallback
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +25,16 @@ class TaskTitle extends StatelessWidget {
       title: Text(
         titleList,
         style: TextStyle(
-            // decoration:
-            //     isChecked ? TextDecoration.lineThrough : TextDecoration.none,
-            // color: isChecked ? Colors.red : Colors.black,
-            ),
+          decoration:
+              isChecked ? TextDecoration.lineThrough : TextDecoration.none,
+          color: isChecked ? Colors.red : Colors.black,
+        ),
       ),
-      // trailing: Checkbox(
-      //   value: isChecked,
-      //   onChanged: checkBoxCallback,
-      //   activeColor: kPrimaryColor,
-      // ),
+      trailing: Checkbox(
+        value: isChecked,
+        onChanged: checkBoxCallback,
+        activeColor: kPrimaryColor,
+      ),
     );
   }
 }

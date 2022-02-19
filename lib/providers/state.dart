@@ -23,7 +23,7 @@ class TaskNotif extends ChangeNotifier {
     ),
   ];
 
-  List<Task> get getAllTask {
+  dynamic get getAllTask {
     return _tasks;
   }
 
