@@ -25,6 +25,7 @@ class TaskList extends ConsumerWidget {
         return GestureDetector(
           onLongPress: () {
             // dataProvider.deleteTask(dataProvider.getAllTasks[index]);
+            ref.read(taskProvider).deleteTask(taskNotifier.getAllTask[index]);
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text("Tâches supprimer"),
               backgroundColor: Colors.green[400],

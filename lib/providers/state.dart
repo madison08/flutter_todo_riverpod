@@ -37,6 +37,16 @@ class TaskNotif extends ChangeNotifier {
     _tasks.add(newTask);
     notifyListeners();
   }
+
+  void deleteTask(Task task) {
+    this._tasks.remove(task);
+    notifyListeners();
+  }
+
+  void checkTask(Task task) {
+    task.toggleDone();
+    notifyListeners();
+  }
 }
 
 final taskProvider = ChangeNotifierProvider((ref) => TaskNotif());
